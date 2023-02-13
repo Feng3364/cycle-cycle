@@ -4,7 +4,7 @@ cur_dir="."
 quality="20-30"
 zip_dir=""
 cannot_zip_dir=""
-is_replace=0
+is_replace=false
 
 # 使用帮助
 function show_usage() {
@@ -34,7 +34,7 @@ while [[ $# -gt 0 ]]; do
         shift
         ;;
     -r|--replace)
-        is_replace=1
+        is_replace=true
         shift
         ;;
     -h|--help)
@@ -47,26 +47,29 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# 获取目录下所有图片资源
-check_files=`find "$cur_dir" -name '*.png'`
-
 #修改分隔符为换行符（路径中可能包含空格）
 old_IFS="$IFS"
 IFS=$'\n'
 
 # 创建文件夹
-if [ $is_replace -eq 0 ]; then
+if ! $is_replace; then
     zip_dir="$cur_dir/zip_dir"
     if [ ! -d "$zip_dir" ];then
         mkdir $zip_dir
+    else
+        echo "zip_dir已经存在"
     fi
 fi
 
 cannot_zip_dir="$cur_dir/cannot_zip_dir"
 if [ ! -d "$cannot_zip_dir" ];then
     mkdir $cannot_zip_dir
+else
+    echo "cannot_zip_dir已经存在"
 fi
 
+# 获取目录下所有图片资源
+check_files=$(find "$cur_dir" -name '*.png')
 # 遍历压缩
 for line in $check_files; do
     pngquant --quality=$quality $line
@@ -78,15 +81,15 @@ for line in $check_files; do
     fi
 
     # 拼接压缩后的图片名称(awk分隔字符串)
-    pre_name=`echo $line | awk -F '.png' '{print $1}'`
+    pre_name=$(echo $line | awk -F '.png' '{print $1}')
     pre_name="${pre_name}-fs8.png"
 
     # wc查看文件大小
-    pic_size1=`wc -c $line | awk '{print $1}'`
-    pic_size2=`wc -c $pre_name | awk '{print $1}'`
+    pic_size1=$(wc -c $line | awk '{print $1}')
+    pic_size2=$(wc -c $pre_name | awk '{print $1}')
 
     if [[ $pic_size2 -lt $pic_size1 ]]; then
-        if [ $is_replace -eq 1 ]; then
+        if $is_replace; then
             mv $pre_name $line
         else
             mv $pre_name $zip_dir
