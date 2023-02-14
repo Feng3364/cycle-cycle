@@ -48,21 +48,23 @@ result_path="$cur_dir/result"
 if [ ! -d "$result_path" ];then
     mkdir $result_path
 else
-    echo "result_path已经存在"
+    for file in $result_path/*; do
+        rm $file
+    done
 fi
 
 # 收集资源文件
 image_sentence_file="$result_path/temp.txt"
 unused_file="$result_path/unused.txt"
+maybe_unused_file="$result_path/maybe.txt"
 oversize_file="$result_path/oversize.txt"
 contain1x_file="$result_path/contain1x.txt"
 
 # 收集图片句柄(xib + OC + Swift + Swift便利方法)
-#image_sentence_file=$(grep -Er "image=\"|imageNamed\:|UIImage\(named\:|UIImageView\(with\:" $cur_dir)
 echo $(grep -Er "image=\"|imageNamed\:|UIImage\(named\:|UIImageView\(with\:" $cur_dir) >> $image_sentence_file
 
 # 获取目录下所有图片资源
-check_files=$(find "$cur_dir" -name '*.png')
+check_files=$(find -E "$cur_dir" -regex ".*\.(jpg|jpeg|png|webp|gif)")
 # 遍历压缩
 for png in $check_files; do
 
@@ -91,13 +93,22 @@ for png in $check_files; do
         echo $png_path >> $oversize_file
     fi
 
-    referenced=false
-    # 判断图片名称是否引用到
-    if grep -q $match_name ${image_sentence_file}; then
-        referenced=true
-    else
-        echo $match_name
+    # 数字名图片收集
+    containT=$(echo $match_name | grep "[0-9]")
+    if [[ "$containT" != "" ]]; then
+        echo $png_path >> $maybe_unused_file
     fi
+
+    # 判断图片名称是否引用到
+    if ! grep -q $match_name ${image_sentence_file}; then
+        echo "${png_path} ${pic_size}KB" >> $unused_file
+    fi
+
 done
 
+rm $image_sentence_file
+
 IFS="$old_IFS"
+
+echo "执行完毕！！！"
+exit 0
