@@ -70,7 +70,7 @@ for png in $check_files; do
 
     # bundle
     png_path=$png
-    match_name=$(basename $png_path | awk -F '.png' '{print $1}')
+    match_name=$(basename $png_path | awk -F '.' '{print $1}')
 
     # .imageset
     if [[ $png =~ ".imageset" ]]; then

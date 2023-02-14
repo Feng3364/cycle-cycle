@@ -57,7 +57,9 @@ if ! $is_replace; then
     if [ ! -d "$zip_dir" ];then
         mkdir $zip_dir
     else
-        echo "zip_dir已经存在"
+        for file in $zip_dir/*; do
+            rm $file
+        done
     fi
 fi
 
@@ -65,37 +67,44 @@ cannot_zip_dir="$cur_dir/cannot_zip_dir"
 if [ ! -d "$cannot_zip_dir" ];then
     mkdir $cannot_zip_dir
 else
-    echo "cannot_zip_dir已经存在"
+    for file in $cannot_zip_dir/*; do
+        rm $file
+    done
 fi
 
 # 获取目录下所有图片资源
 check_files=$(find "$cur_dir" -name '*.png')
 # 遍历压缩
-for line in $check_files; do
-    pngquant --quality=$quality $line
+for png in $check_files; do
+    # .imageset
+    if [[ $png =~ ".imageset" ]]; then
+        continue
+    fi
     
+    pngquant --quality=$quality $png
+
     if [[ $? -ne 0 ]]; then
-        echo "原图${line}压缩失败"
-        cp $line $cannot_zip_dir
+        echo "原图${png}压缩失败"
+        cp $png $cannot_zip_dir
         continue
     fi
 
     # 拼接压缩后的图片名称(awk分隔字符串)
-    pre_name=$(echo $line | awk -F '.png' '{print $1}')
+    pre_name=$(echo $png | awk -F '.png' '{print $1}')
     pre_name="${pre_name}-fs8.png"
 
     # wc查看文件大小
-    pic_size1=$(wc -c $line | awk '{print $1}')
+    pic_size1=$(wc -c $png | awk '{print $1}')
     pic_size2=$(wc -c $pre_name | awk '{print $1}')
 
     if [[ $pic_size2 -lt $pic_size1 ]]; then
         if $is_replace; then
-            mv $pre_name $line
+            mv $pre_name $png
         else
             mv $pre_name $zip_dir
         fi
     else
-        echo "原图${line}"
+        echo "原图${png}"
         echo "压缩图$pre_name"
         echo "压缩后图片大小反而变大，放弃此次压缩"
         mv $pre_name $cannot_zip_dir
@@ -104,3 +113,6 @@ for line in $check_files; do
 done
 
 IFS="$old_IFS"
+
+echo "执行完毕！！！"
+exit 0
