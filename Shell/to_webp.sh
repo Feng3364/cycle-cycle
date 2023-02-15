@@ -1,7 +1,7 @@
 # 当前目录
 #cur_dir=$(dirname $(realpath $0))
 cur_dir="."
-quality="20-30"
+quality=75
 result_dir=""
 is_replace=false
 
@@ -12,7 +12,7 @@ function show_usage() {
     png_quant.sh --directory <dir> 在指定目录搜索图片并按20-30的压缩比进行压缩
 
         -d|--directory <dir> - 指定查找目录，默认当前所在目录
-        -q|--quality <固定值或范围区间> - 指定压缩质量
+        -q|--quality <Int> - 指定压缩质量（默认75）
         -r|--replace <Bool> - 是否直接进行替换
         --help  - prints help screen
 EOF)
@@ -64,55 +64,60 @@ IFS=$'\n'
 
 # 创建文件夹
 if ! $is_replace; then
-    result_dir="$cur_dir/result_dir"
+    result_dir="$cur_dir/result"
     if [ ! -d "$result_dir" ];then
         mkdir $result_dir
     else
         for file in $result_dir/*; do
-            rm $file
+            rm -r $file
         done
     fi
 fi
 
 # 获取目录下所有图片资源
-check_files=$(find "$cur_dir" -name '*.png')
+check_files=$(find -E "$cur_dir" -regex ".*\.(jpg|jpeg|png|webp|gif)")
 # 遍历压缩
-for png in $check_files; do
-    # .imageset
-    if [[ $png =~ ".imageset" ]]; then
+for img in $check_files; do
+    # .imageset || .webp
+    if [[ $img =~ ".imageset" || $img =~ ".webp" ]]; then
         continue
     fi
-    
-    pngquant --quality=$quality $png
 
+    # 图片名
+    image_name=$(basename $img)
+    # 图片名（不含后缀）
+    image_no_suffix=$(echo $image_name | awk -F '.' '{print $1}')
+    # 路径名
+    folder_path="$result_dir/"
+    if $is_replace; then
+        folder_path=$(echo $img | awk -F $image_name '{print $1}')
+    fi
+    # 输出名
+    out_name="$folder_path$image_no_suffix.webp"
+
+    # .gif
+    if [[ $image_name =~ "gif" ]]; then
+        gif2webp -q $quality $img -o $out_name
+    else
+        cwebp -q $quality $img -o $out_name
+    fi
+
+    # 转换结果
     if [[ $? -ne 0 ]]; then
         Red_Error
-        echo "图片${png}压缩失败"
-        cp $png $result_dir
+        echo "${img}图片转换失败"
         continue
     fi
 
-    # 拼接压缩后的图片名称(awk分隔字符串)
-    pre_name=$(echo $png | awk -F '.png' '{print $1}')
-    pre_name="${pre_name}-fs8.png"
-
     # wc查看文件大小
-    pic_size1=$(wc -c $png | awk '{print $1}')
-    pic_size2=$(wc -c $pre_name | awk '{print $1}')
+    pic_size1=$(wc -c $img | awk '{print $1}')
+    pic_size2=$(wc -c $out_name | awk '{print $1}')
 
-    if [[ $pic_size2 -lt $pic_size1 ]]; then
-        if $is_replace; then
-            mv $pre_name $png
-        else
-            mv $pre_name $result_dir
-        fi
-    else
+    if [[ $pic_size2 -gt $pic_size1 ]]; then
         Red_Error
-        echo "图片${png}压缩后反而变大，放弃此次压缩"
-        rf $pre_name
-        cp $png $result_dir
+        echo "${img}图片转换后反而变大，放弃此次转换"
+        rf $out_name
     fi
-
 done
 
 IFS="$old_IFS"
