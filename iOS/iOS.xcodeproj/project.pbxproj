@@ -17,7 +17,7 @@
 		DC9BD3562A2CE6ED00A0E7F8 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9BD3472A2CE6EC00A0E7F8 /* NotificationManager.m */; };
 		DC9BD3572A2CE6ED00A0E7F8 /* FXMallocScrbble.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9BD34B2A2CE6EC00A0E7F8 /* FXMallocScrbble.m */; };
 		DC9BD3582A2CE6ED00A0E7F8 /* _FXZombie_.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9BD34E2A2CE6EC00A0E7F8 /* _FXZombie_.m */; };
-		DC9BD3592A2CE6ED00A0E7F8 /* NSObject+FXZombiesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9BD34F2A2CE6EC00A0E7F8 /* NSObject+FXZombiesObject.m */; };
+		DC9BD3592A2CE6ED00A0E7F8 /* NSObject+FXZombiesObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9BD34F2A2CE6EC00A0E7F8 /* NSObject+FXZombiesObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DC9BD35A2A2CE6ED00A0E7F8 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = DC9BD3512A2CE6EC00A0E7F8 /* fishhook.c */; };
 		DC9BD35B2A2CE6ED00A0E7F8 /* FXSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9BD3542A2CE6EC00A0E7F8 /* FXSwizzle.m */; };
 /* End PBXBuildFile section */
@@ -148,10 +148,10 @@
 			isa = PBXGroup;
 			children = (
 				DC9BD34A2A2CE6EC00A0E7F8 /* _FXZombie_.h */,
+				DC9BD34E2A2CE6EC00A0E7F8 /* _FXZombie_.m */,
+				DC9BD34D2A2CE6EC00A0E7F8 /* FXMallocScrbble.h */,
 				DC9BD34B2A2CE6EC00A0E7F8 /* FXMallocScrbble.m */,
 				DC9BD34C2A2CE6EC00A0E7F8 /* NSObject+FXZombiesObject.h */,
-				DC9BD34D2A2CE6EC00A0E7F8 /* FXMallocScrbble.h */,
-				DC9BD34E2A2CE6EC00A0E7F8 /* _FXZombie_.m */,
 				DC9BD34F2A2CE6EC00A0E7F8 /* NSObject+FXZombiesObject.m */,
 			);
 			path = Zombies;
@@ -403,6 +403,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -431,6 +432,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
