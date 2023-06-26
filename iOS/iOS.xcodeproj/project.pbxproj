@@ -161,8 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				DC9BD3512A2CE6EC00A0E7F8 /* fishhook.c */,
-				DC9BD3522A2CE6EC00A0E7F8 /* FXSwizzle.h */,
 				DC9BD3532A2CE6EC00A0E7F8 /* fishhook.h */,
+				DC9BD3522A2CE6EC00A0E7F8 /* FXSwizzle.h */,
 				DC9BD3542A2CE6EC00A0E7F8 /* FXSwizzle.m */,
 			);
 			path = Hook;

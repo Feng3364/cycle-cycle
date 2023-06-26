@@ -1,0 +1,44 @@
+{
+  "name": "XFlash",
+  "version": "0.0.1",
+  "summary": "快速开发的工具&公共&服务库.",
+  "homepage": "https://github.com/Feng3364/XFlash",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Felix Feng": "840385400@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/Feng3364/XFlash.git",
+    "tag": "0.0.1"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "cocoapods_version": ">= 0.36",
+  "swift_versions": [
+    "5.0",
+    "5.1",
+    "5.2",
+    "5.3",
+    "5.4",
+    "5.5"
+  ],
+  "subspecs": [
+    {
+      "name": "Public",
+      "source_files": "XFlash/Classes/Public/**/*"
+    },
+    {
+      "name": "CommonUI",
+      "source_files": "XFlash/Classes/CommonUI/**/*"
+    },
+    {
+      "name": "Service",
+      "source_files": "XFlash/Classes/Service/**/*"
+    }
+  ],
+  "swift_version": "5.5"
+}

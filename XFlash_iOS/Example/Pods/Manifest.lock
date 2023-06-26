@@ -1,0 +1,22 @@
+PODS:
+  - XFlash (0.0.1):
+    - XFlash/CommonUI (= 0.0.1)
+    - XFlash/Public (= 0.0.1)
+    - XFlash/Service (= 0.0.1)
+  - XFlash/CommonUI (0.0.1)
+  - XFlash/Public (0.0.1)
+  - XFlash/Service (0.0.1)
+
+DEPENDENCIES:
+  - XFlash (from `../`)
+
+EXTERNAL SOURCES:
+  XFlash:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  XFlash: 24da328a65531d8184c8cc55036348eddcb1c550
+
+PODFILE CHECKSUM: f63c17e483f14c1b2ece2cb7482c442aae3ddee7
+
+COCOAPODS: 1.11.3
