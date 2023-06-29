@@ -36,7 +36,12 @@ public extension PopupManager {
         guard checkMainThread() else { return }
         
         // 配置项
-        var config = PopupConfigure()
+        var config: PopupConfigure!
+        if let options = options {
+            config = options
+        } else {
+            config = PopupConfigure()
+        }
         config.priority = priority
         config.setDefaultConfigure()
         config.containerView = curContainerView(config.containerView)
