@@ -14,6 +14,8 @@
 		7197CD71C17E011224978ABB9BFAF666 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		B7E004E1FB002110D210DCD5519C164A /* RouteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680C887B015804EF20BCA0BA3904E3A5 /* RouteProtocol.swift */; };
 		D36B59847FF69D646D6395135ECA2588 /* PopupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41835C4CEBC10AC23622D595C5DEF2F /* PopupManager.swift */; };
+		DC4E90AA2A4A6D9B00288547 /* PopupBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4E90A92A4A6D9B00288547 /* PopupBackgroundView.swift */; };
+		DC4E90AC2A4A6E6600288547 /* PopupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4E90AB2A4A6E6600288547 /* PopupModel.swift */; };
 		EE0F3147E7C27C8CD28531736B59FC4D /* XFlash-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A5528FEC66A57C964BED190BADF950A1 /* XFlash-dummy.m */; };
 		F2ED1300A1988CE4503B3F57A52BCB6D /* Pods-XFlash_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 07F259C902813C2C2782BFF2711F6CED /* Pods-XFlash_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FC2A7C7D2F5F2A42513C5C940CBD28AC /* Pods-XFlash_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0D9B0B2FB4042F5CD8B72468CA994D /* Pods-XFlash_Example-dummy.m */; };
@@ -38,7 +40,7 @@
 		2C40B0E9D0C90526250CC05092F99BF0 /* Pods-XFlash_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-XFlash_Example.modulemap"; sourceTree = "<group>"; };
 		377AB9FE79067C4294B703E414E023CA /* XFlash */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = XFlash; path = XFlash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C546DFB3A166D3568FB4F5BA79A505B /* Pods-XFlash_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XFlash_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		4948C1EA99CCB10D54272407C213EBF2 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		4948C1EA99CCB10D54272407C213EBF2 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		680C887B015804EF20BCA0BA3904E3A5 /* RouteProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RouteProtocol.swift; sourceTree = "<group>"; };
 		69EE58140D1E06F2B1F2751A7C0775C5 /* XFlash-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "XFlash-Info.plist"; sourceTree = "<group>"; };
 		6BE6D57770476A2083886238C09B61CE /* Pods-XFlash_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-XFlash_Example-Info.plist"; sourceTree = "<group>"; };
@@ -47,15 +49,17 @@
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		7C0D9B0B2FB4042F5CD8B72468CA994D /* Pods-XFlash_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-XFlash_Example-dummy.m"; sourceTree = "<group>"; };
 		9C4AD12184180323ACEA30431990E884 /* XFlash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = XFlash.release.xcconfig; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A5528FEC66A57C964BED190BADF950A1 /* XFlash-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "XFlash-dummy.m"; sourceTree = "<group>"; };
 		B664CB3C5C8959C35D34E757DC34339E /* XFlash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = XFlash.debug.xcconfig; sourceTree = "<group>"; };
 		C3ACC4B0354667F719500D633A033D9A /* Pods-XFlash_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-XFlash_Example.release.xcconfig"; sourceTree = "<group>"; };
-		D383F397A2235B64CE9911E4CC451CC5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		D383F397A2235B64CE9911E4CC451CC5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DC4E90A92A4A6D9B00288547 /* PopupBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupBackgroundView.swift; sourceTree = "<group>"; };
+		DC4E90AB2A4A6E6600288547 /* PopupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupModel.swift; sourceTree = "<group>"; };
 		E6BBDBB6405A6C1166CE4E02DD1DCB56 /* XFlash.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = XFlash.modulemap; sourceTree = "<group>"; };
 		F2DF42C0A560C7EC71471DEB0E5F29AD /* XFlash-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "XFlash-umbrella.h"; sourceTree = "<group>"; };
 		F41835C4CEBC10AC23622D595C5DEF2F /* PopupManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopupManager.swift; sourceTree = "<group>"; };
-		F71A12C15C484FD617D3ACD814BAB43E /* XFlash.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = XFlash.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F71A12C15C484FD617D3ACD814BAB43E /* XFlash.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = XFlash.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F9F0BAA840DEC0A0C002D01301409A15 /* Pods-XFlash_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-XFlash_Example-frameworks.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +97,8 @@
 				71DC63D0F1833463D1724378F69F623F /* PopupConfigure.swift */,
 				F41835C4CEBC10AC23622D595C5DEF2F /* PopupManager.swift */,
 				72D5112EF7C790B0C8B042726D64AB08 /* PopupProtocol.swift */,
+				DC4E90A92A4A6D9B00288547 /* PopupBackgroundView.swift */,
+				DC4E90AB2A4A6E6600288547 /* PopupModel.swift */,
 			);
 			name = Popup;
 			path = XFlash/Classes/Service/Popup;
@@ -331,10 +337,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DEC7EF57308033D97C0E9543244509A /* PopupConfigure.swift in Sources */,
+				DC4E90AA2A4A6D9B00288547 /* PopupBackgroundView.swift in Sources */,
 				D36B59847FF69D646D6395135ECA2588 /* PopupManager.swift in Sources */,
 				233274C6AF2FCE7E80BF45BD1BE55E07 /* PopupProtocol.swift in Sources */,
 				B7E004E1FB002110D210DCD5519C164A /* RouteProtocol.swift in Sources */,
 				EE0F3147E7C27C8CD28531736B59FC4D /* XFlash-dummy.m in Sources */,
+				DC4E90AC2A4A6E6600288547 /* PopupModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -67,9 +67,9 @@ public struct PopupConfigure {
     /// 圆角方向
     public var rectCorners: UIRectCorner
     /// 圆角大小
-    public var cornerRadius: Float
+    public var cornerRadius: Double
     /// 键盘和弹窗间距（默认为10，底部弹窗为0）
-    public var keyboardVSpace: Float
+    public var keyboardVSpace: Double
     
     // MARK: - 操作相关
     /// 优先级（0~1000）
