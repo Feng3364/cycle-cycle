@@ -17,7 +17,7 @@ class PopupServiceVC: BaseTableVC {
         resetData(with: [
             (title: "单一", list: ["top", "center", "bottom", "full"]),
             (title: "同组", list: []),
-            (title: "混合", list: ["PopupService"])
+            (title: "混合", list: [])
         ])
     }
     

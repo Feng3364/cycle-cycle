@@ -26,3 +26,11 @@ public protocol PopupProtocol {
     @objc optional func popupViewDidAppear()
     @objc optional func popupViewDidDisappear()
 }
+
+func comparePopupProtocol(_ a: PopupProtocol?, _ b: PopupProtocol?) -> Bool {
+    guard let a = a,
+          let b = b
+    else { return false }
+    
+    return Unmanaged.passUnretained(a).toOpaque() == Unmanaged.passUnretained(b).toOpaque()
+}

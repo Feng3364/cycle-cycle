@@ -515,7 +515,7 @@ private extension PopupManager {
     func handleWaitRemoveQueue(with model: PopupModel) {
         let list = getSameGroupPopups(model: model)
         list.forEach { m in
-            if m.popupObj?.supplyCustomPopupView() == model.popupObj?.supplyCustomPopupView() {
+            if comparePopupProtocol(m.popupObj, model.popupObj) {
                 waitRemovePool.append(model)
                 windowQueue.removeAll { $0 == model}
             }
