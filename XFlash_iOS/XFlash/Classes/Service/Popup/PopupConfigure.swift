@@ -75,7 +75,10 @@ public struct PopupConfigure {
     /// 优先级（0~1000）
     public var priority: Int
     /// 弹窗容器
-    public var containerView: UIView?
+    public var superView: UIView?
+    public var containerView: UIView {
+        superView ?? UIApplication.shared.keyWindow ?? UIView()
+    }
     /// 是否点击弹窗背景（空白区域）消失
     public var isClickDismiss: Bool
     /// 顶部通知条是否支持上滑关闭（默认YES）
@@ -127,7 +130,7 @@ public struct PopupConfigure {
         
         // 操作
         priority = 0
-        containerView = nil
+        superView = nil
         isClickDismiss = false
         isDragClose = false
         

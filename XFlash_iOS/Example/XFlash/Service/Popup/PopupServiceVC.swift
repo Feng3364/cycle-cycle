@@ -42,12 +42,9 @@ extension PopupServiceVC {
     }
     
     func handleSingleCondition(_ title: String) {
-        switch title {
-        case "top":
-            break
-        case "center":
+        let popupHandler: ((PopupScene) -> Void) = { type in
             var config = PopupConfigure()
-            config.sceneStyle = .center
+            config.sceneStyle = type
             config.isClickDismiss = true
             config.cornerRadius = 8
             config.popStyle = .scale
@@ -55,13 +52,22 @@ extension PopupServiceVC {
             
             let centerV = CenterView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
             PopupManager.shared.add(popup: centerV, options: config)
+        }
+        
+        var type = PopupScene.center
+        switch title {
+        case "top":
+            type = .top
+        case "center":
+            type = .center
         case "bottom":
-            break
+            type = .bottom
         case "full":
-            break
+            type = .full
         default:
             break
         }
+        popupHandler(type)
     }
     
     func handleGroupCondition(_ title: String) {
