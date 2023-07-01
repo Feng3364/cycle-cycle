@@ -1,4 +1,5 @@
 PODS:
+  - SnapKit (5.6.0)
   - XFlash (0.0.1):
     - XFlash/CommonUI (= 0.0.1)
     - XFlash/Public (= 0.0.1)
@@ -8,15 +9,21 @@ PODS:
   - XFlash/Service (0.0.1)
 
 DEPENDENCIES:
+  - SnapKit
   - XFlash (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - SnapKit
 
 EXTERNAL SOURCES:
   XFlash:
     :path: "../"
 
 SPEC CHECKSUMS:
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   XFlash: 24da328a65531d8184c8cc55036348eddcb1c550
 
-PODFILE CHECKSUM: f63c17e483f14c1b2ece2cb7482c442aae3ddee7
+PODFILE CHECKSUM: 672c33a96ddf7abbabf8e37485f7ff69b7446c1c
 
 COCOAPODS: 1.11.3

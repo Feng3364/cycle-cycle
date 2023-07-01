@@ -68,7 +68,8 @@ public extension PopupManager {
     ///   - popup: 遵守协议的弹窗
     ///   - identifier: 弹窗唯一标识
     func dismiss(popup: PopupProtocol? = nil,
-                 identifier: String? = nil) {
+                 identifier: String? = nil,
+                 groupId: String? = nil) {
         guard checkMainThread() else { return }
         
         if let popup = popup, let model = getPopupBy(popup: popup) {
@@ -77,6 +78,11 @@ public extension PopupManager {
         
         if let id = identifier, !id.isEmpty, let model = getPopupWith(identifier: id) {
             dismiss(with: model, isRemoveQueue: true)
+        }
+        
+        if let groupId = groupId, !groupId.isEmpty {
+            let popupList = getPopupsWith(groupId: groupId)
+            dismiss(with: popupList)
         }
     }
     
@@ -148,25 +154,15 @@ private extension PopupManager {
     func pop(with model: PopupModel, isRecover: Bool) {
         guard checkMainThread() else { return }
         
-        let clearBlock: (([PopupModel]) -> Void) = { list in
-            guard !list.isEmpty else { return }
-            
-            var list = list
-            while list.count > 0 {
-                self.dismiss(with: list.last!, isRemoveQueue: true)
-                list.remove(at: list.count - 1)
-            }
-        }
-        
-        // Alone模式把同一Group的弹窗移除
+        // Alone模式把之前同一Group的弹窗移除
         if model.config.isAloneMode {
             let popupList = getPopupsWith(groupId: model.config.groupId)
-            clearBlock(popupList)
+            dismiss(with: popupList)
         }
         
-        // Terminator模式把所有弹窗移除
+        // Terminator模式把之前所有弹窗移除
         if model.config.isTerminatorMode {
-            clearBlock(windowQueue)
+            dismiss(with: windowQueue)
         } else {
             // 根据优先级叠加展示
             let allPopupList = getPopupsWith(groupId: model.config.groupId)
@@ -190,8 +186,8 @@ private extension PopupManager {
         }
         
         // 弹窗内容自定义布局
-        if let callback = model.popupObj.layout {
-            callback(model.bgView)
+        if let callback = model.popupObj.layoutWithSuperView {
+            callback()
         }
         //获取到业务中ContentView的frame
         model.bgView.layoutIfNeeded()
@@ -347,10 +343,20 @@ private extension PopupManager {
 // MARK: - Dismiss
 private extension PopupManager {
     
+    func dismiss(with list: [PopupModel]) {
+        guard !list.isEmpty else { return }
+        
+        var list = list
+        while list.count > 0 {
+            self.dismiss(with: list.last!, isRemoveQueue: true)
+            list.remove(at: list.count - 1)
+        }
+    }
+    
     func dismiss(with model: PopupModel, isRemoveQueue: Bool) {
         // 存入待移除队列
         if isRemoveQueue {
-            handleWaitRemoveQueue(with: model)
+            handleRemoveQueue(with: model)
         }
         
         let time = DispatchTime(uptimeNanoseconds: UInt64(model.config.dismissAnimationDuration))
@@ -507,7 +513,7 @@ private extension PopupManager {
     }
     
     /// 处理待移除队列
-    func handleWaitRemoveQueue(with model: PopupModel) {
+    func handleRemoveQueue(with model: PopupModel) {
         let list = getSameGroupPopups(model: model)
         list.forEach { m in
             if comparePopupProtocol(m.popupObj, model.popupObj) {

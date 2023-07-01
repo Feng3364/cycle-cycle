@@ -52,9 +52,9 @@ public struct PopupConfigure {
     public var identifier: String
     /// 分组id
     public var groupId: String?
-    /// 是否清空之前同组弹窗（默认为false）
+    /// 是否添加之前清空同组弹窗（默认为false）
     public var isAloneMode: Bool
-    /// 是否清空之前所有弹窗（默认为false）
+    /// 是否添加之前清空所有弹窗（默认为false）
     public var isTerminatorMode: Bool
     
     // MARK: - UI相关
@@ -126,7 +126,7 @@ public struct PopupConfigure {
         backgroundAlpha = 0.25
         rectCorners = []
         cornerRadius = 0
-        keyboardVSpace = 0
+        keyboardVSpace = 10
         
         // 操作
         priority = 0

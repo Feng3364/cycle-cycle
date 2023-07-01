@@ -4,4 +4,5 @@ platform :ios, '10.0'
 
 target 'XFlash_Example' do
   pod 'XFlash', :path => '../'
+  pod 'SnapKit'
 end

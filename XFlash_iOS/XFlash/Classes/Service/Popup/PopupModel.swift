@@ -228,10 +228,13 @@ extension PopupModel {
         guard let duration = noti.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval,
               let endFrame = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
         
+        // 键盘y值
         let maxY = endFrame.origin.y
+        // 弹窗左上角
         let popVPoint = contentView.layer.position
         let curMaxY = popVPoint.y + contentView.frame.size.height / 2
-        let offY = curMaxY - maxY;
+        // 偏移量
+        let offY = curMaxY - maxY + config.keyboardVSpace
         
         // 键盘被遮挡时执行动画
         if maxY < curMaxY {
