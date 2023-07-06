@@ -3,4 +3,102 @@
    uuid = "DF894FC2-9BF3-4A69-A1DA-637D195DA470"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2BB8E9BD-3869-44C8-9E29-783D1C167CA9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../XFlash/Classes/Service/Popup/PopupManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
+            landmarkName = "dismiss(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "80C13973-0EED-4462-A622-45FA2D463BF4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../XFlash/Classes/Service/Popup/PopupManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "358"
+            endingLineNumber = "358"
+            landmarkName = "dismiss(with:isRemoveQueue:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0C41F8E8-99B1-4A92-8485-22535CF7322B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../XFlash/Classes/Service/Popup/PopupManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "367"
+            endingLineNumber = "367"
+            landmarkName = "dismiss(with:isRemoveQueue:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0C41F8E8-99B1-4A92-8485-22535CF7322B - ee2e47844d5a5f20"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in XFlash.PopupManager.dismiss(with: XFlash.PopupModel, isRemoveQueue: Swift.Bool) -&gt; ()"
+                  moduleName = "XFlash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/felix/Downloads/cycle-cycle/XFlash_iOS/XFlash/Classes/Service/Popup/PopupManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "368"
+                  endingLineNumber = "368"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "0C41F8E8-99B1-4A92-8485-22535CF7322B - ee2e47844d5a5f43"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in XFlash.PopupManager.dismiss(with: XFlash.PopupModel, isRemoveQueue: Swift.Bool) -&gt; ()"
+                  moduleName = "XFlash"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/felix/Downloads/cycle-cycle/XFlash_iOS/XFlash/Classes/Service/Popup/PopupManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "367"
+                  endingLineNumber = "367"
+                  offsetFromSymbolStart = "228">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D2CFFDAD-BED9-4FF4-9944-914E3821A1DF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../XFlash/Classes/Service/Popup/PopupManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "350"
+            endingLineNumber = "350"
+            landmarkName = "dismiss(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

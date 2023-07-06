@@ -85,7 +85,7 @@ extension PopupView: PopupProtocol {
     
     func supplyCustomPopupView() -> UIView { self }
     
-    func layoutWithSuperView() {
+    func layout(with superV: UIView) {
         switch type {
         case .center:
             snp.makeConstraints {

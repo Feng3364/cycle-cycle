@@ -186,8 +186,8 @@ private extension PopupManager {
         }
         
         // 弹窗内容自定义布局
-        if let callback = model.popupObj.layoutWithSuperView {
-            callback()
+        if let callback = model.popupObj.layout {
+            callback(model.config.containerView)
         }
         //获取到业务中ContentView的frame
         model.bgView.layoutIfNeeded()
@@ -195,7 +195,7 @@ private extension PopupManager {
         model.originalFrame = model.contentView.frame
         
         // 开启定时器
-        if (model.config.dismissDuration ?? 0) >= 1 {
+        if (model.config.dismissDuration ?? 0) > 0 {
             model.startTimer()
         }
         
@@ -363,9 +363,9 @@ private extension PopupManager {
         let queueCount = getPopupsWith(groupId: model.config.groupId).count
         if !(model.config.isAloneMode), isRemoveQueue, queueCount >= 1 {
             DispatchQueue.main.asyncAfter(deadline: time) {
-                if queueCount >= 1 {
+                let all = self.getPopupsWith(groupId: model.config.groupId)
+                if queueCount >= 1, all.count > 0 {
                     // 如果当前移除的弹窗之前还有被覆盖的，则把之前的重新展示出来
-                    let all = self.getPopupsWith(groupId: model.config.groupId)
                     let last = all.last!
                     // 开启定时器
                     if (last.config.dismissDuration ?? 0) >= 1 {

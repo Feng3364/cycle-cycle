@@ -14,6 +14,7 @@ private enum Condition: String {
     case oc = "OC"
     case keyboard = "键盘"
     case configure = "配置"
+    case animate = "动画"
     case combine = "组合"
     case remove = "移除"
 }
@@ -30,9 +31,21 @@ class PopupServiceVC: BaseTableVC {
                 "bottom",
                 "full"
             ]),
-            (title: Condition.oc.rawValue, list: []),
+            (title: Condition.oc.rawValue, list: [
+                "top",
+                "center",
+                "bottom",
+                "full"
+            ]),
             (title: Condition.keyboard.rawValue, list: [
                 "键盘"
+            ]),
+            (title: Condition.animate.rawValue, list: [
+                "弹出风格",
+                "消失风格",
+                "持续时长",
+                "弹出动画时长",
+                "消失动画时长"
             ]),
             (title: Condition.configure.rawValue, list: [
                 "隐藏/不隐藏背景",
@@ -76,6 +89,8 @@ extension PopupServiceVC {
             handleObjectiveCondition(title)
         case .keyboard:
             handleKeyboardCondition(title)
+        case .animate:
+            handleAnimateCondition(title)
         case .configure:
             handleConfigureCondition(title)
         case .combine:
@@ -104,15 +119,71 @@ extension PopupServiceVC {
         default:
             break
         }
-        popupViewBy(scene: scene)
+        popupView(scene: scene)
     }
     
     func handleObjectiveCondition(_ title: String) {
-        
+        var scene = PopupScene.center
+        switch title {
+        case "top":
+            scene = .top
+        case "center":
+            scene = .center
+        case "bottom":
+            scene = .bottom
+        case "full":
+            scene = .full
+        default:
+            break
+        }
+        popupView(scene: scene, view: OCPopupView(frame: .zero))
     }
     
     func handleKeyboardCondition(_ title: String) {
-        popupInputViewBy()
+        popupView(view: PopupInputView())
+    }
+    
+    func handleAnimateCondition(_ title: String) {
+        var config = PopupConfigure()
+        switch title {
+        case "弹出风格":
+            let popStyle = Int(arc4random() % 5)
+            if popStyle == 0 {
+                config.popStyle = .fall
+            } else if popStyle == 1 {
+                config.popStyle = .fall
+            } else if popStyle == 2 {
+                config.popStyle = .rise
+            } else if popStyle == 3 {
+                config.popStyle = .scale
+            }
+            config.popAnimationDuration = 1
+            print("当前弹出风格为\(config.popStyle)")
+        case "消失风格":
+            let popStyle = Int(arc4random() % 2)
+            if popStyle == 0 {
+                config.dismissStyle = .fade
+            } else if popStyle == 1 {
+                config.dismissStyle = .none
+            }
+            config.dismissAnimationDuration = 1
+            print("当前消失风格为\(config.dismissStyle)")
+        case "持续时长":
+            let dismissDuration = TimeInterval(arc4random() % 5)
+            config.dismissDuration = dismissDuration
+            print("当前持续时长为\(dismissDuration)")
+        case "弹出动画时长":
+            let popAnimationDuration = TimeInterval(arc4random() % 5)
+            print("当前弹出动画时长为\(popAnimationDuration)")
+            config.popAnimationDuration = popAnimationDuration
+        case "消失动画时长":
+            let dismissAnimationDuration = TimeInterval(arc4random() % 5)
+            print("当前消失动画时长为\(dismissAnimationDuration)")
+            config.dismissAnimationDuration = dismissAnimationDuration
+        default:
+            break
+        }
+        popupView(config: config)
     }
     
     func handleConfigureCondition(_ title: String) {
@@ -145,34 +216,34 @@ extension PopupServiceVC {
             let keyboardVSpace = Double(arc4random() % 50)
             print("当前键盘间距为\(keyboardVSpace)")
             config.keyboardVSpace = keyboardVSpace
-            popupInputViewBy(config: config)
+            popupView(config: config, view: PopupInputView())
             return
         default:
             break
         }
-        popupViewBy(config: config)
+        popupView(config: config)
     }
     
     func handleCombineCondition(_ title: String) {
         switch title {
         case "center->center":
-            popupViewBy(scene: .center)
-            popupViewBy(scene: .center)
+            popupView(scene: .center)
+            popupView(scene: .center)
         case "top->top":
-            popupViewBy(scene: .top)
-            popupViewBy(scene: .top)
+            popupView(scene: .top)
+            popupView(scene: .top)
         case "bottom->bottom":
-            popupViewBy(scene: .bottom)
-            popupViewBy(scene: .bottom)
+            popupView(scene: .bottom)
+            popupView(scene: .bottom)
         case "full->full":
-            popupViewBy(scene: .full)
-            popupViewBy(scene: .full)
+            popupView(scene: .full)
+            popupView(scene: .full)
         case "center->top":
-            popupViewBy(scene: .center)
-            popupViewBy(scene: .top)
+            popupView(scene: .center)
+            popupView(scene: .top)
         case "center->bottom":
-            popupViewBy(scene: .center)
-            popupViewBy(scene: .bottom)
+            popupView(scene: .center)
+            popupView(scene: .bottom)
         default:
             break
         }
@@ -187,6 +258,7 @@ extension PopupServiceVC {
         case "根据identifier移除":
             dismiss(identifier: "id_1")
         case "根据groupId移除":
+            // TODO
             dismiss(groupId: "group_1")
         case "根据container移除":
             dismiss(container: view)
@@ -200,7 +272,10 @@ extension PopupServiceVC {
 
 // MARK: - 不同弹窗
 extension PopupServiceVC {
-    func popupViewBy(scene: PopupScene = .center, config: PopupConfigure? = nil) {
+    
+    func popupView(scene: PopupScene = .center,
+                   config: PopupConfigure? = nil,
+                   view: PopupProtocol? = nil) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()) {
             var defaultConfig = PopupConfigure()
             defaultConfig.sceneStyle = scene
@@ -209,22 +284,9 @@ extension PopupServiceVC {
             defaultConfig.popStyle = .scale
             defaultConfig.priority = 80
             
-            let centerV = PopupView(type: scene)
-            PopupManager.shared.add(popup: centerV, options: config ?? defaultConfig)
+            PopupManager.shared.add(popup: view ?? PopupView(type: scene),
+                                    options: config ?? defaultConfig)
         }
-    }
-    
-    func popupInputViewBy(config: PopupConfigure? = nil) {
-        var defaultConfig = PopupConfigure()
-        defaultConfig.sceneStyle = .center
-        defaultConfig.isClickDismiss = true
-        defaultConfig.cornerRadius = 8
-        defaultConfig.popStyle = .scale
-        defaultConfig.priority = 80
-        defaultConfig.isClickDismiss = false
-        
-        let centerV = PopupInputView()
-        PopupManager.shared.add(popup: centerV, options: config ?? defaultConfig)
     }
     
     func dismiss(aloneMode: Bool = false,
@@ -236,14 +298,14 @@ extension PopupServiceVC {
         config1.identifier = "id_1"
         config1.groupId = "group_1"
         config1.superView = view
-        popupViewBy(config: config1)
+        popupView(config: config1)
         
         // 与config1 同一组、同一containerView
         var config2 = PopupConfigure()
         config2.identifier = "id_2"
         config2.groupId = "group_1"
         config2.superView = view
-        popupViewBy(config: config2)
+        popupView(config: config2)
         
         var config3 = PopupConfigure()
         // 会清空同组or全部config
@@ -252,7 +314,7 @@ extension PopupServiceVC {
         config3.identifier = "id_3"
         config3.groupId = "group_1"
         config3.superView = UIApplication.shared.keyWindow!
-        popupViewBy(config: config3)
+        popupView(config: config3)
         
         guard !aloneMode, !terminatorMode else { return }
         

@@ -11,7 +11,7 @@ public protocol PopupProtocol {
     func supplyCustomPopupView() -> UIView
     
     /// 对自定义view进行布局
-    @objc optional func layoutWithSuperView()
+    @objc optional func layout(with superV: UIView)
     
     /// 执行自定义动画
     @objc optional func executeCustomAnimation()

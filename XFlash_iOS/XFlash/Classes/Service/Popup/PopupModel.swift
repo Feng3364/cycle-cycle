@@ -100,6 +100,7 @@ extension PopupModel {
     func startTimer() {
         guard isValidModel() else { return }
         
+        dismissTime = config.dismissDuration
         timer = Timer.scheduledTimer(timeInterval: 1.0,
                                      target: self,
                                      selector: #selector(timerLoopExecute),
@@ -128,6 +129,7 @@ extension PopupModel {
             return
         }
         
+        dismissTime! -= 1
         if let callback = popupObj.countTime {
             callback(dismissTime!)
         }

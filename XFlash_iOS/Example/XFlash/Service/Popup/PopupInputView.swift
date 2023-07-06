@@ -73,7 +73,7 @@ extension PopupInputView: PopupProtocol {
     
     func supplyCustomPopupView() -> UIView { self }
     
-    func layoutWithSuperView() {
+    func layout(with superV: UIView) {
         snp.makeConstraints {
             $0.size.equalTo(CGSize(width: 300, height: 300))
             $0.center.equalToSuperview()
