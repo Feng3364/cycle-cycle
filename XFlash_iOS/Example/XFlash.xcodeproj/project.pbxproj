@@ -15,6 +15,8 @@
 		DC083A702A4D7534006CB7FD /* BaseTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC083A6F2A4D7534006CB7FD /* BaseTableVC.swift */; };
 		DC083A782A4D81F5006CB7FD /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC083A762A4D81F5006CB7FD /* PopupView.swift */; };
 		DC083A792A4D81F5006CB7FD /* PopupServiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC083A772A4D81F5006CB7FD /* PopupServiceVC.swift */; };
+		DCE38A7B2A57013400DF1AAF /* ConstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE38A7A2A57013400DF1AAF /* ConstVC.swift */; };
+		DCE38A812A57033E00DF1AAF /* OCConstVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE38A802A57033E00DF1AAF /* OCConstVC.m */; };
 		DCECDB582A5006B100B12BFA /* OCPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCECDB572A5006B100B12BFA /* OCPopupView.m */; };
 		DCECDB5A2A5008CE00B12BFA /* PopupInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCECDB592A5008CE00B12BFA /* PopupInputView.swift */; };
 /* End PBXBuildFile section */
@@ -35,6 +37,9 @@
 		DC083A6F2A4D7534006CB7FD /* BaseTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableVC.swift; sourceTree = "<group>"; };
 		DC083A762A4D81F5006CB7FD /* PopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		DC083A772A4D81F5006CB7FD /* PopupServiceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupServiceVC.swift; sourceTree = "<group>"; };
+		DCE38A7A2A57013400DF1AAF /* ConstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstVC.swift; sourceTree = "<group>"; };
+		DCE38A7F2A57033E00DF1AAF /* OCConstVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCConstVC.h; sourceTree = "<group>"; };
+		DCE38A802A57033E00DF1AAF /* OCConstVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCConstVC.m; sourceTree = "<group>"; };
 		DCECDB552A5006B100B12BFA /* XFlash_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XFlash_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		DCECDB562A5006B100B12BFA /* OCPopupView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCPopupView.h; sourceTree = "<group>"; };
 		DCECDB572A5006B100B12BFA /* OCPopupView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCPopupView.m; sourceTree = "<group>"; };
@@ -78,6 +83,7 @@
 		607FACD21AFB9204008FA782 /* Example for XFlash */ = {
 			isa = PBXGroup;
 			children = (
+				DCE38A792A57010A00DF1AAF /* Public */,
 				DC083A742A4D81F5006CB7FD /* Service */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
@@ -147,6 +153,24 @@
 				DCECDB572A5006B100B12BFA /* OCPopupView.m */,
 			);
 			path = Popup;
+			sourceTree = "<group>";
+		};
+		DCE38A792A57010A00DF1AAF /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				DCE38A7C2A57013900DF1AAF /* Const */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		DCE38A7C2A57013900DF1AAF /* Const */ = {
+			isa = PBXGroup;
+			children = (
+				DCE38A7A2A57013400DF1AAF /* ConstVC.swift */,
+				DCE38A7F2A57033E00DF1AAF /* OCConstVC.h */,
+				DCE38A802A57033E00DF1AAF /* OCConstVC.m */,
+			);
+			path = Const;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,11 +289,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCE38A7B2A57013400DF1AAF /* ConstVC.swift in Sources */,
 				DC083A702A4D7534006CB7FD /* BaseTableVC.swift in Sources */,
 				DC083A792A4D81F5006CB7FD /* PopupServiceVC.swift in Sources */,
 				DCECDB5A2A5008CE00B12BFA /* PopupInputView.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				DCE38A812A57033E00DF1AAF /* OCConstVC.m in Sources */,
 				DC083A782A4D81F5006CB7FD /* PopupView.swift in Sources */,
 				DCECDB582A5006B100B12BFA /* OCPopupView.m in Sources */,
 			);
@@ -396,7 +422,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = XFlash/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -418,7 +444,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = XFlash/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

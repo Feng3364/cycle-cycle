@@ -15,7 +15,7 @@ class ViewController: BaseTableVC {
         
         title = "XFlash实验室"
         resetData(with: [
-            (title: "通用", list: []),
+            (title: "通用", list: ["Const"]),
             (title: "UI", list: []),
             (title: "服务", list: ["PopupService"])
         ])
