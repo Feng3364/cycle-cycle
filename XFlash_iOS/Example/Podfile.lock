@@ -1,12 +1,12 @@
 PODS:
   - SnapKit (5.6.0)
   - XFlash (0.0.1):
-    - XFlash/CommonUI (= 0.0.1)
     - XFlash/Public (= 0.0.1)
     - XFlash/Service (= 0.0.1)
-  - XFlash/CommonUI (0.0.1)
+    - XFlash/UIKit (= 0.0.1)
   - XFlash/Public (0.0.1)
   - XFlash/Service (0.0.1)
+  - XFlash/UIKit (0.0.1)
 
 DEPENDENCIES:
   - SnapKit
@@ -22,7 +22,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
-  XFlash: 24da328a65531d8184c8cc55036348eddcb1c550
+  XFlash: 3ac079ca384b7cbce8f507252d27f30d171a7340
 
 PODFILE CHECKSUM: 036f1029148d9c1962c4356627e004b4a8746104
 
