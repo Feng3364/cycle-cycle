@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   
   s.platform = :ios
   s.cocoapods_version = '>= 0.36'
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '11.0'
   s.swift_versions = ['5.0', '5.1', '5.2', '5.3', '5.4', '5.5']
 
   # ———————————————————— File patterns ————————————————————
@@ -23,8 +23,8 @@ Pod::Spec.new do |s|
     p.source_files = 'XFlash/Classes/Public/**/*'
   end
   
-  s.subspec "CommonUI" do |c|
-    c.source_files = 'XFlash/Classes/CommonUI/**/*'
+  s.subspec "UIKit" do |u|
+    u.source_files = 'XFlash/Classes/UIKit/**/*'
   end
 
   s.subspec "Service" do |ss|
