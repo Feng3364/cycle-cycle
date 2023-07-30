@@ -9,14 +9,41 @@
 import UIKit
 import XFlash
 
-private enum Condition: String {
-    case single = "单一"
-    case oc = "OC"
-    case keyboard = "键盘"
-    case configure = "配置"
-    case animate = "动画"
-    case combine = "组合"
-    case remove = "移除"
+private extension StringKey {
+    static let single = "单一"
+    static let oc = "OC"
+    static let keyboard = "键盘"
+    static let configure = "配置"
+    static let animate = "动画"
+    static let combine = "组合"
+    static let remove = "移除"
+    
+    static let top = "top"
+    static let center = "center"
+    static let bottom = "bottom"
+    static let full = "full"
+    static let popup = "弹出风格"
+    static let dismiss = "消失风格"
+    static let duration = "持续时长"
+    static let popupDuration = "弹出动画时长"
+    static let dismissDuration = "消失动画时长"
+    static let hideBackground = "隐藏/不隐藏背景"
+    static let backgroundColor = "随机背景颜色"
+    static let backgroundAlpha = "随机背景透明度"
+    static let radius = "随机圆角大小"
+    static let keyboardSpace = "随机键盘间距"
+    static let centerToCenter = "center->center"
+    static let topToTop = "top->top"
+    static let bottomToBottom = "bottom->bottom"
+    static let fullToFull = "full->full"
+    static let centerToTop = "center->top"
+    static let centerToBottom = "center->bottom"
+    static let aloneMode = "配置aloneMode"
+    static let terminatorMode = "配置terminatorMode"
+    static let removeByIdentifier = "根据identifier移除"
+    static let removeByGroupId = "根据groupId移除"
+    static let removeByContainer = "根据container移除"
+    static let removeAll = "移除all"
 }
 
 class PopupServiceVC: BaseTableVC {
@@ -25,50 +52,57 @@ class PopupServiceVC: BaseTableVC {
         super.viewDidLoad()
 
         resetData(with: [
-            (title: Condition.single.rawValue, list: [
-                "top",
-                "center",
-                "bottom",
-                "full"
+            (title: StringKey.single,
+             list: [
+                StringKey.top,
+                StringKey.center,
+                StringKey.bottom,
+                StringKey.full,
             ]),
-            (title: Condition.oc.rawValue, list: [
-                "top",
-                "center",
-                "bottom",
-                "full"
+            (title: StringKey.oc,
+             list: [
+                StringKey.top,
+                StringKey.center,
+                StringKey.bottom,
+                StringKey.full,
             ]),
-            (title: Condition.keyboard.rawValue, list: [
-                "键盘"
+            (title: StringKey.keyboard,
+             list: [
+                StringKey.keyboard,
             ]),
-            (title: Condition.animate.rawValue, list: [
-                "弹出风格",
-                "消失风格",
-                "持续时长",
-                "弹出动画时长",
-                "消失动画时长"
+            (title: StringKey.animate,
+             list: [
+                StringKey.popup,
+                StringKey.dismiss,
+                StringKey.duration,
+                StringKey.popupDuration,
+                StringKey.dismissDuration,
             ]),
-            (title: Condition.configure.rawValue, list: [
-                "隐藏/不隐藏背景",
-                "随机背景颜色",
-                "随机背景透明度",
-                "随机圆角",
-                "随机键盘间距"
+            (title: StringKey.configure,
+             list: [
+                StringKey.hideBackground,
+                StringKey.backgroundColor,
+                StringKey.backgroundAlpha,
+                StringKey.radius,
+                StringKey.keyboardSpace,
             ]),
-            (title: Condition.combine.rawValue, list: [
-                "center->center",
-                "top->top",
-                "bottom->bottom",
-                "full->full",
-                "center->top",
-                "center->bottom",
+            (title: StringKey.combine,
+             list: [
+                StringKey.centerToCenter,
+                StringKey.topToTop,
+                StringKey.bottomToBottom,
+                StringKey.fullToFull,
+                StringKey.centerToTop,
+                StringKey.centerToBottom,
             ]),
-            (title: Condition.remove.rawValue, list: [
-                "配置aloneMode",
-                "配置terminatorMode",
-                "根据identifier移除",
-                "根据groupId移除",
-                "根据container移除",
-                "移除all",
+            (title: StringKey.remove,
+             list: [
+                StringKey.aloneMode,
+                StringKey.terminatorMode,
+                StringKey.removeByIdentifier,
+                StringKey.removeByGroupId,
+                StringKey.removeByContainer,
+                StringKey.removeAll,
             ]),
         ])
     }
@@ -80,23 +114,26 @@ extension PopupServiceVC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         super.tableView(tableView, didSelectRowAt: indexPath)
-        let condition = Condition(rawValue: dataArray[indexPath.section].title) ?? .single
+        
+        let condition = dataArray[indexPath.section].title
         let title = dataArray[indexPath.section].list[indexPath.row]
         switch condition {
-        case .single:
+        case StringKey.single:
             handleSingleCondition(title)
-        case .oc:
+        case StringKey.oc:
             handleObjectiveCondition(title)
-        case .keyboard:
+        case StringKey.keyboard:
             handleKeyboardCondition(title)
-        case .animate:
+        case StringKey.animate:
             handleAnimateCondition(title)
-        case .configure:
+        case StringKey.configure:
             handleConfigureCondition(title)
-        case .combine:
+        case StringKey.combine:
             handleCombineCondition(title)
-        case .remove:
+        case StringKey.remove:
             handleGroupCondition(title)
+        default:
+            break
         }
     }
     
@@ -108,13 +145,13 @@ extension PopupServiceVC {
     func handleSingleCondition(_ title: String) {
         var scene = PopupScene.center
         switch title {
-        case "top":
+        case StringKey.top:
             scene = .top
-        case "center":
+        case StringKey.center:
             scene = .center
-        case "bottom":
+        case StringKey.bottom:
             scene = .bottom
-        case "full":
+        case StringKey.full:
             scene = .full
         default:
             break
@@ -125,13 +162,13 @@ extension PopupServiceVC {
     func handleObjectiveCondition(_ title: String) {
         var scene = PopupScene.center
         switch title {
-        case "top":
+        case StringKey.top:
             scene = .top
-        case "center":
+        case StringKey.center:
             scene = .center
-        case "bottom":
+        case StringKey.bottom:
             scene = .bottom
-        case "full":
+        case StringKey.full:
             scene = .full
         default:
             break
@@ -146,7 +183,7 @@ extension PopupServiceVC {
     func handleAnimateCondition(_ title: String) {
         var config = PopupConfigure()
         switch title {
-        case "弹出风格":
+        case StringKey.popup:
             let popStyle = Int(arc4random() % 5)
             if popStyle == 0 {
                 config.popStyle = .fall
@@ -159,7 +196,7 @@ extension PopupServiceVC {
             }
             config.popAnimationDuration = 1
             print("当前弹出风格为\(config.popStyle)")
-        case "消失风格":
+        case StringKey.dismiss:
             let popStyle = Int(arc4random() % 2)
             if popStyle == 0 {
                 config.dismissStyle = .fade
@@ -168,15 +205,15 @@ extension PopupServiceVC {
             }
             config.dismissAnimationDuration = 1
             print("当前消失风格为\(config.dismissStyle)")
-        case "持续时长":
+        case StringKey.duration:
             let dismissDuration = TimeInterval(arc4random() % 5)
             config.dismissDuration = dismissDuration
             print("当前持续时长为\(dismissDuration)")
-        case "弹出动画时长":
+        case StringKey.popupDuration:
             let popAnimationDuration = TimeInterval(arc4random() % 5)
             print("当前弹出动画时长为\(popAnimationDuration)")
             config.popAnimationDuration = popAnimationDuration
-        case "消失动画时长":
+        case StringKey.dismissDuration:
             let dismissAnimationDuration = TimeInterval(arc4random() % 5)
             print("当前消失动画时长为\(dismissAnimationDuration)")
             config.dismissAnimationDuration = dismissAnimationDuration
@@ -189,11 +226,11 @@ extension PopupServiceVC {
     func handleConfigureCondition(_ title: String) {
         var config = PopupConfigure()
         switch title {
-        case "隐藏/不隐藏背景":
+        case StringKey.hideBackground:
             let isHiddenBackgroundView = Int(arc4random() % 2)
             print("当前隐藏背景状态为\(isHiddenBackgroundView)")
             config.isHiddenBackgroundView = isHiddenBackgroundView == 1
-        case "随机背景颜色":
+        case StringKey.backgroundColor:
             let red = CGFloat(arc4random() % 255) / 255
             let green = CGFloat(arc4random() % 255) / 255
             let blue = CGFloat(arc4random() % 255) / 255
@@ -202,17 +239,17 @@ extension PopupServiceVC {
                                              green: green,
                                              blue: blue,
                                              alpha: 1)
-        case "随机背景透明度":
+        case StringKey.backgroundAlpha:
             let alpha = CGFloat(arc4random() % 100) / 100
             print("当前背景透明度\(alpha)")
             config.backgroundAlpha = alpha
-        case "随机圆角":
+        case StringKey.radius:
             let rectCorners = UIRectCorner(rawValue: UInt(arc4random() % 4))
             let cornerRadius = CGFloat(arc4random() % 10) + 5
             print("当前圆角为状态\(rectCorners.rawValue)-圆角大小\(cornerRadius)")
             config.rectCorners = rectCorners
             config.cornerRadius = cornerRadius
-        case "随机键盘间距":
+        case StringKey.keyboardSpace:
             let keyboardVSpace = Double(arc4random() % 50)
             print("当前键盘间距为\(keyboardVSpace)")
             config.keyboardVSpace = keyboardVSpace
@@ -226,22 +263,22 @@ extension PopupServiceVC {
     
     func handleCombineCondition(_ title: String) {
         switch title {
-        case "center->center":
+        case StringKey.centerToCenter:
             popupView(scene: .center)
             popupView(scene: .center)
-        case "top->top":
+        case StringKey.topToTop:
             popupView(scene: .top)
             popupView(scene: .top)
-        case "bottom->bottom":
+        case StringKey.bottomToBottom:
             popupView(scene: .bottom)
             popupView(scene: .bottom)
-        case "full->full":
+        case StringKey.fullToFull:
             popupView(scene: .full)
             popupView(scene: .full)
-        case "center->top":
+        case StringKey.centerToTop:
             popupView(scene: .center)
             popupView(scene: .top)
-        case "center->bottom":
+        case StringKey.centerToBottom:
             popupView(scene: .center)
             popupView(scene: .bottom)
         default:
@@ -251,18 +288,17 @@ extension PopupServiceVC {
     
     func handleGroupCondition(_ title: String) {
         switch title {
-        case "配置aloneMode":
+        case StringKey.aloneMode:
             dismiss(aloneMode: true)
-        case "配置terminatorMode":
+        case StringKey.terminatorMode:
             dismiss(terminatorMode: true)
-        case "根据identifier移除":
+        case StringKey.removeByIdentifier:
             dismiss(identifier: "id_1")
-        case "根据groupId移除":
-            // TODO
+        case StringKey.removeByGroupId:
             dismiss(groupId: "group_1")
-        case "根据container移除":
+        case StringKey.removeByContainer:
             dismiss(container: view)
-        case "移除all":
+        case StringKey.removeAll:
             dismiss()
         default:
             break

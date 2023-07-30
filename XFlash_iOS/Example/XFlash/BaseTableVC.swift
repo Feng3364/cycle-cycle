@@ -8,6 +8,8 @@
 
 import UIKit
 
+struct StringKey {}
+
 class BaseTableVC: UIViewController {
 
     override func viewDidLoad() {
