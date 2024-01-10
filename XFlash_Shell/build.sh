@@ -11,6 +11,10 @@ Yellow_Warning() {
     printf '\033[1;33;40m[WARNING] %b\033[0m\n' "$*";
 }
 
+white_Print() {
+    printf '\033[1;37;40m[ERROR] %b\033[0m\n' "$*";
+}
+
 Red_Error() {
     printf '\033[1;31;40m[ERROR] %b\033[0m\n' "$*";
     exit 1

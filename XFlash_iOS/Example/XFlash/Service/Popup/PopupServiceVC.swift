@@ -17,6 +17,7 @@ private extension StringKey {
     static let animate = "动画"
     static let combine = "组合"
     static let remove = "移除"
+    static let toast = "Toast"
     
     static let top = "top"
     static let center = "center"
@@ -44,6 +45,12 @@ private extension StringKey {
     static let removeByGroupId = "根据groupId移除"
     static let removeByContainer = "根据container移除"
     static let removeAll = "移除all"
+    
+    static let toastNull = "Toast提示空视图"
+    static let toastSingle = "单个Toast提示"
+    static let toastMulit = "多个Toast提示叠加"
+    static let toastLoading = "展示转圈toast"
+    static let toastHide = "隐藏转圈toast"
 }
 
 class PopupServiceVC: BaseTableVC {
@@ -104,6 +111,14 @@ class PopupServiceVC: BaseTableVC {
                 StringKey.removeByContainer,
                 StringKey.removeAll,
             ]),
+            (title: StringKey.toast,
+             list: [
+                StringKey.toastNull,
+                StringKey.toastSingle,
+                StringKey.toastMulit,
+                StringKey.toastLoading,
+                StringKey.toastHide,
+            ]),
         ])
     }
     
@@ -132,6 +147,8 @@ extension PopupServiceVC {
             handleCombineCondition(title)
         case StringKey.remove:
             handleGroupCondition(title)
+        case StringKey.toast:
+            handleToastCondition(title)
         default:
             break
         }
@@ -364,6 +381,28 @@ extension PopupServiceVC {
             } else {
                 PopupManager.shared.removeAllPopup()
             }
+        }
+    }
+}
+
+// MARK: - Toast
+extension PopupServiceVC {
+    
+    func handleToastCondition(_ title: String) {
+        switch title {
+        case StringKey.toastNull:
+            showToast(nil)
+        case StringKey.toastSingle:
+            showToast("你好")
+        case StringKey.toastMulit:
+            showToast("你好")
+            showToast("Hello World")
+        case StringKey.toastLoading:
+            showLoading()
+        case StringKey.toastHide:
+            hideLoading()
+        default:
+            break
         }
     }
 }

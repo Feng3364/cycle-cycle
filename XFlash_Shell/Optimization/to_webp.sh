@@ -9,7 +9,7 @@ is_replace=false
 function show_usage() {
     local help=$(cat <<EOF
 
-    png_quant.sh --directory <dir> 在指定目录搜索图片并按20-30的压缩比进行压缩
+    to_webp.sh --directory <dir> 在指定目录搜索图片并按20-30的压缩比进行压缩
 
         -d|--directory <dir> - 指定查找目录，默认当前所在目录
         -q|--quality <Int> - 指定压缩质量（默认75）

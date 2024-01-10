@@ -15,6 +15,9 @@
 		DC083A702A4D7534006CB7FD /* BaseTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC083A6F2A4D7534006CB7FD /* BaseTableVC.swift */; };
 		DC083A782A4D81F5006CB7FD /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC083A762A4D81F5006CB7FD /* PopupView.swift */; };
 		DC083A792A4D81F5006CB7FD /* PopupServiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC083A772A4D81F5006CB7FD /* PopupServiceVC.swift */; };
+		DCC3386F2B4E3492006764BC /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC3386E2B4E3492006764BC /* ToastView.swift */; };
+		DCC338722B4E37C4006764BC /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC338712B4E37C4006764BC /* Toast.swift */; };
+		DCC338762B4E3F5A006764BC /* Loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = DCC338752B4E3F5A006764BC /* Loading.gif */; };
 		DCE38A7B2A57013400DF1AAF /* ConstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE38A7A2A57013400DF1AAF /* ConstVC.swift */; };
 		DCE38A812A57033E00DF1AAF /* OCConstVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE38A802A57033E00DF1AAF /* OCConstVC.m */; };
 		DCECDB582A5006B100B12BFA /* OCPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCECDB572A5006B100B12BFA /* OCPopupView.m */; };
@@ -37,6 +40,9 @@
 		DC083A6F2A4D7534006CB7FD /* BaseTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableVC.swift; sourceTree = "<group>"; };
 		DC083A762A4D81F5006CB7FD /* PopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		DC083A772A4D81F5006CB7FD /* PopupServiceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupServiceVC.swift; sourceTree = "<group>"; };
+		DCC3386E2B4E3492006764BC /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		DCC338712B4E37C4006764BC /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		DCC338752B4E3F5A006764BC /* Loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Loading.gif; sourceTree = "<group>"; };
 		DCE38A7A2A57013400DF1AAF /* ConstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstVC.swift; sourceTree = "<group>"; };
 		DCE38A7F2A57033E00DF1AAF /* OCConstVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCConstVC.h; sourceTree = "<group>"; };
 		DCE38A802A57033E00DF1AAF /* OCConstVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCConstVC.m; sourceTree = "<group>"; };
@@ -90,6 +96,7 @@
 				DC083A6F2A4D7534006CB7FD /* BaseTableVC.swift */,
 				DCECDB552A5006B100B12BFA /* XFlash_Example-Bridging-Header.h */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+				DCC338752B4E3F5A006764BC /* Loading.gif */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
@@ -146,6 +153,7 @@
 		DC083A752A4D81F5006CB7FD /* Popup */ = {
 			isa = PBXGroup;
 			children = (
+				DCC338702B4E37B4006764BC /* Toast */,
 				DC083A762A4D81F5006CB7FD /* PopupView.swift */,
 				DCECDB592A5008CE00B12BFA /* PopupInputView.swift */,
 				DC083A772A4D81F5006CB7FD /* PopupServiceVC.swift */,
@@ -153,6 +161,15 @@
 				DCECDB572A5006B100B12BFA /* OCPopupView.m */,
 			);
 			path = Popup;
+			sourceTree = "<group>";
+		};
+		DCC338702B4E37B4006764BC /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				DCC3386E2B4E3492006764BC /* ToastView.swift */,
+				DCC338712B4E37C4006764BC /* Toast.swift */,
+			);
+			path = Toast;
 			sourceTree = "<group>";
 		};
 		DCE38A792A57010A00DF1AAF /* Public */ = {
@@ -237,6 +254,7 @@
 			files = (
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				DCC338762B4E3F5A006764BC /* Loading.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,9 +311,11 @@
 				DC083A702A4D7534006CB7FD /* BaseTableVC.swift in Sources */,
 				DC083A792A4D81F5006CB7FD /* PopupServiceVC.swift in Sources */,
 				DCECDB5A2A5008CE00B12BFA /* PopupInputView.swift in Sources */,
+				DCC3386F2B4E3492006764BC /* ToastView.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				DCE38A812A57033E00DF1AAF /* OCConstVC.m in Sources */,
+				DCC338722B4E37C4006764BC /* Toast.swift in Sources */,
 				DC083A782A4D81F5006CB7FD /* PopupView.swift in Sources */,
 				DCECDB582A5006B100B12BFA /* OCPopupView.m in Sources */,
 			);
